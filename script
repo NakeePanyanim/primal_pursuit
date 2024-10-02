@@ -1,0 +1,26 @@
+warn("Anti afk running")
+game:GetService("Players").LocalPlayer.Idled:connect(function()
+warn("Anti afk ran")
+game:GetService("VirtualUser"):CaptureController()
+game:GetService("VirtualUser"):ClickButton2(Vector2.new())
+end)
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
+local Window = Library.CreateLib("BCNZXT - Project(Primal Pursuit)", "DarkTheme")
+
+
+local Tab = Window:NewTab("Bones/XP")
+local Section = Tab:NewSection("Function")
+Section:NewButton("Auto Quest", "ButtonInfo", function()
+    game:GetService("ReplicatedStorage").Remotes.QuestClaim:FireServer("survival5")
+end)
+local Tab = Window:NewTab("Misc")
+local Section = Tab:NewSection("Player")
+Section:NewSlider("Jump", "JumpInfo", 500, 16, function(s) -- 500 (MaxValue) | 0 (MinValue)
+    game.Players.LocalPlayer.Character.Humanoid.JumpHeight = s
+end)
+Section:NewButton("Dead", "ButtonInfo", function()
+    game.Players.LocalPlayer.Character.Humanoid.Health = 0
+end)
+Section:NewKeybind("Toggle UI", "KeybindInfo", Enum.KeyCode.RightControl, function()
+	Library:ToggleUI()
+end)
